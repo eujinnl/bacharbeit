@@ -1,8 +1,8 @@
 # Basic Makefile for LaTeX projects
 
-PROJECT = proposal
+PROJECT = thesis
 TEX = pdflatex
-BIB = biber
+BIB = bibtex
 FLAGS = -halt-on-error -file-line-error
 
 # Phony targets for build process
@@ -19,4 +19,4 @@ $(PROJECT).pdf: $(PROJECT).tex
 
 # Clean build files
 clean:
-	rm -f *.aux *.bbl *.bcf *.blg *.log *.out *.run.xml $(PROJECT).pdf
+	rm -f *.aux *.bbl *.bcf *.blg *.log *.out *.run.xml $(PROJECT).pdf *.acn *.glo *.glsdefs *.lof *.nlo *.toc *.lot 

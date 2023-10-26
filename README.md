@@ -1,102 +1,90 @@
-# THI-LaTeX-thesis-template
-![](./images/thiRGB.jpg)
+# Thesis Template
 
-This repository holds a working copy of Technische Hochschule Ingolstadt University's (THI's) LaTeX thesis template 
-which can be used as quick starting point for writing your Thesis using LaTeX.
+Welcome to the LaTeX template for writing your thesis proposal. This README aims to guide you through the setup and usage of this template.
 
-# Tip for beginners
-I, myself didn't have any prior experience with Latex before I began to start writing my Thesis report. So, to get 
-acquainted with what Latex is all about and to learn the A, B, C, D,... of Latex, I picked this excellent quick read
-[book](https://www.amazon.de/gp/product/1543162649/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1) on Amazon which 
-just takes approximately **1 hour** to read from **cover-to-cover**. I highly recommend this book for beginners who do 
-not have any prior experience with Latex.
+NOTE: This is based on this [THI Template](https://github.com/logicatcore/THI-LaTeX-thesis-template) watch the README-original.md for the original README and the credits.
 
-# Getting started
-In my opinion one of the most difficult task is getting started easily and quickly with the tool one has to work with, 
-which is not an easy task as there are many tools available ranging from online tools like Overleaf to offline tools 
-like TexMaker and more. The reason I bring this forth here is because I had my share of difficulty getting started. 
-From my experience I have found that [TexMaker](https://www.xm1math.net/texmaker/) to be the most comfortable one 
-which pre-installs most of the standard packages required and hence streamlining the setup process.
+## Table of Contents
 
-I myself have written my thesis report on Linux OS for which the TexMaker app is readily available in the ubuntu 
-app-store. But, the app is also available for Windows and MacOsX OS's, so, that is comfortable if you want to follow some
- additional information that follows here regarding setup across any operating systems.
+- [Installing LaTeX](#installing-latex)
+- [File Structure](#file-structure)
+- [Building the Project](#building-the-project)
+- [Editor Setup: Visual Studio Code](#editor-setup-visual-studio-code)
+- [Workflow with GitHub](#workflow-with-github)
+- [Scientific Working](#scientific-working)
 
-## IDE is not all that is needed
-TexMaker here is just an IDE (Integrated Digital Environment) that helps us create and work with latex documents. To actually install latex i.e. get the required libraries we need to install them. This installation process is different for windows and linux, so choose one below-
+## Installing LaTeX
 
-1. If you are going to work on a Windows machine, all you need to do is install [MikTex](https://miktex.org/howto/install-miktex)
-2. If you are going to work on a Ubuntu machine, you can install latex libraries by following this [article](https://linuxconfig.org/how-to-install-latex-on-ubuntu-20-04-focal-fossa-linux)
----
-To get started, clone this repository to have it locally available for your use or if you are okay with having your report
-online publically available, you can fork this repository and work upon it.
+### Windows
 
-```bash
-$> cd Documents
-$> git clone https://github.com/logicatcore/THI-LaTeX-thesis-template.git
+1. **Install MiKTeX**: Download and install from [MiKTeX](https://miktex.org/download).
+2. **Install Perl** (if using `latexmk`): Download and install from [Strawberry Perl](http://strawberryperl.com/).
+
+### Mac
+
+1. **Install MacTeX**: Download and install from [TUG](http://www.tug.org/mactex/morepackages.html).
+
+### Linux
+
+1. **Install TeX Live**: Use your package manager. For Debian/Ubuntu:
+   ```shell
+   sudo apt-get install texlive-full
+   ```
+
+## File Structure
+
+    proposal.tex: Main .tex file to compile the document.
+    content.tex: Your writing goes here. 
+    variables.tex: Store variables like title, student name, etc., in variables.tex.
+    references.bib: Place your bib entries here for bibliography management.
+
+## Building the Project
+
+Compile the project using make:
+
+```shell
+make
 ```
-Once the files are available, the next step is to start TexMaker and build a sample pdf right away to make sure that 
-everything is working and you have your setup ready. Follow the following steps-
-* Open TexMaker
-* File > Open > Documents/THI-LaTeX-thesis-template/thesis.tex
 
-This opens up the main entry point to your report, if you are familiar with programming, this particular tex file is 
-similiar to the `main()` function which gets called automatically.
+Clean up auxiliary files and the generated PDF:
 
-Now it is time to check if everything works and to do that just click on the **Quick Build** button in the top toolbar. 
-After a couple of seconds, the newly built pdf should show up in the in built pdf viewer.
-
-# Configuring Quick Build settings
-It is important to know what the **Quick Build** button is doing. Simply put, the button in turn runs a combination of
- commands with each combination having a specific meaning and purpose.
-
-Having not tampered with the settings so far the **Quick Build** settings can be inspected by going to 
-Option > Configure Texmaker > Quick Build. This shows the various pre built commands which can be selected to configure
- TexMaker to run those sequence of commands upon clicking the **Quick Build** button.
-
-![](./misc/configure.png)
-
-* `PdfLaTeX + view PDF` is the most leightweight command i.e. takes less time to build your pdf document but it ends up 
-using the previously generated auxilliary files which results in the final PDF not reflecting the changes that you have
-  made or require to happen.
-* `PdfLaTeX + BibLaTeX + PdfLaTeX(x2) + view PDF` is a detailed version which generates the bibliography auxilliary 
-files on the first pass and the later PdfLaTeX commands use the auxilliary files to establish links and references in 
-  your PDF document.
-* Finally here comes a user defined command that I spent a lot of time to get it working correctly and now I am glad to 
-share with you so that you do not have to break your head all over again! As you might have noticed in the last command 
-  there was only one new command i.e. **BibLaTeX** which successfully handles all the bibliography needs. But, in the
-  present state of this thesis template which has been improved upon by me can also generate **nomenclature** page, 
-  **Glossary** and **Acronym** page in the report preamble. In order to triger these couple of pages also to be built, 
-  add the following command 
-  `pdfLaTeX -synctex=1 -interaction=nonstopmode %.tex|bibtex %.aux|makeglossaries %|makeindex %.nlo -s nomencl.ist -o %.nls|pdfLaTeX -synctex=1 -interaction=nonstopmode %.tex|pdfLaTeX -synctex=1 -interaction=nonstopmode %.tex|evince %.pdf`
-  in the *User* field and use this for building your final PDF versions or use it ocasionally like after completing one
-  chapter or one section.
-  
-# Saving the workspace i.e. session
-It is good to know that the present state of your workspace i.e. all the files that you have open and are visible in 
-the *Structure* can be quickly saved to again start from that point the next day where you stopped working the day 
-before. To do that just goto File > Session > Save Session > choose-where-you-want-to-save
-
-# When the PDF is not updating as you expected
-There might be situations when you make some changes and build your PDF but the PDF behaves like a stubborn little child
-and refuses to reflect the changes that you've made. This is caused because, LaTeX acts samrtly sometimes and doesn't 
-compile all the auxilliary files again which in turn does not lead to updation of PDF document.
-
-So, if you ever face the following situation I suggest you to run the **clear_misc_files.sh** bash script which just 
-removes all the auxilliary files and hence force LaTeX to compile all of them again.
-
-To run it do the following-
-1. On Linux based machines
-```bash
-$> chmod +x clear_misc_files.sh
-$> ./clear_misc_files.sh
+```shell
+make clean
 ```
-2. On Windows based machines - Just double click the **clear_misc_files.bat** file to run the command which deletes all the irrelevant files
-# Credits
-I should however note that this particular $\LaTeX$ template is thanks to Prof. Dr. Andreas Riener at THI. My contributions to this particular template are-
-1. Delivering it in a working and upto-date condition
-2. Addition of **Glossary** and **Acronym** sections and the compilation command needed
-3. Bringing the **Glossary**, **Acronym**, **List of Figures**, and **List of Tables** sections to the beginning of the document
-4. Usage instruuctions i.e. this README file
 
-If any questions arrise, please do not hesitate to create an issue and I will try my best to help you!
+## Editor Setup: Visual Studio Code
+
+    Install Visual Studio Code: Download and install from Visual Studio Code.
+    Install LaTeX Workshop Extension: Open Visual Studio Code, go to Extensions, and search for “LaTeX Workshop” by James Yu. Install and reload Visual Studio Code.
+    Install PDF Viewer Extension: Similarly, install the "PDF Viewer" extension for viewing compiled PDFs within Visual Studio Code.
+
+## Workflow with GitHub
+
+    Branching: Create a new branch for every significant section or change in your proposal (e.g., introduction, methodology).
+    Commits: Make frequent commits with meaningful messages.
+    Pull Requests: Once a section is complete or a change is made, open a pull request (PR) against the main or master branch. Incorporate feedback and merge it.
+
+### Example Workflow:
+
+```shell
+git checkout -b introduction-section
+# Make changes and commit them
+git push origin introduction-section
+# Open a pull request on GitHub
+```
+
+## Scientific Working
+### Research
+Ensure your research is thorough and documented. Reference reliable sources and keep track of where your information comes from.
+
+### Writing
+Be clear, concise, and objective. Use precise language and avoid unnecessary jargon.
+
+## Citation
+Ensure every claim, data, or statement borrowed from external sources is appropriately cited, adhering to a recognized citation style.
+
+## Proofreading
+Ensure your work is free from grammatical errors and typos. Consider using tools like Grammarly or LanguageTool.
+
+## Feedback
+Regularly share drafts with your supervisor and incorporate the feedback.

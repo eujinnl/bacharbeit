@@ -1,6 +1,6 @@
 # Thesis Template
 
-Welcome to the LaTeX template for writing your thesis proposal. This README aims to guide you through the setup and usage of this template.
+Welcome to the LaTeX template for writing your thesis. This README aims to guide you through the setup and usage of this template.
 
 NOTE: This is based on this [THI Template](https://github.com/logicatcore/THI-LaTeX-thesis-template) watch the README-original.md for the original README and the credits.
 
@@ -33,10 +33,9 @@ NOTE: This is based on this [THI Template](https://github.com/logicatcore/THI-La
 
 ## File Structure
 
-    proposal.tex: Main .tex file to compile the document.
-    content.tex: Your writing goes here. 
-    variables.tex: Store variables like title, student name, etc., in variables.tex.
-    references.bib: Place your bib entries here for bibliography management.
+    thesis.tex: Main .tex file to compile the document.
+    titlepage.tex: The front Page of your thesis, PLEASE add your info there (A german version: titlepageDE.tex)
+    literature.bib: Place your bib entries here for bibliography management.
 
 ## Building the Project
 
@@ -56,11 +55,11 @@ make clean
 
     Install Visual Studio Code: Download and install from Visual Studio Code.
     Install LaTeX Workshop Extension: Open Visual Studio Code, go to Extensions, and search for “LaTeX Workshop” by James Yu. Install and reload Visual Studio Code.
-    Install PDF Viewer Extension: Similarly, install the "PDF Viewer" extension for viewing compiled PDFs within Visual Studio Code.
+    Install PDF Viewer Extension: Similarly, install the "PDF Viewer" (vscode-pdf) extension for viewing compiled PDFs within Visual Studio Code.
 
 ## Workflow with GitHub
 
-    Branching: Create a new branch for every significant section or change in your proposal (e.g., introduction, methodology).
+    Branching: Create a new branch for every significant section or change in your thesis (e.g., introduction, methodology).
     Commits: Make frequent commits with meaningful messages.
     Pull Requests: Once a section is complete or a change is made, open a pull request (PR) against the main or master branch. Incorporate feedback and merge it.
 
@@ -84,7 +83,7 @@ Be clear, concise, and objective. Use precise language and avoid unnecessary jar
 Ensure every claim, data, or statement borrowed from external sources is appropriately cited, adhering to a recognized citation style.
 
 ## Proofreading
-Ensure your work is free from grammatical errors and typos. Consider using tools like Grammarly or LanguageTool.
+Ensure your work is free from grammatical errors and typos. Consider using tools like Grammarly or Deepl.
 
 ## Feedback
 Regularly share drafts with your supervisor and incorporate the feedback.
